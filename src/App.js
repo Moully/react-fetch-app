@@ -5,6 +5,18 @@ import GifList from './components/GifList';
 
 
 class App extends React.Component {
+  constructor (){
+    super();
+    this.state = {
+      gifs: []
+    }
+  }
+
+componentDidMount(){
+  fetch("http://api.giphy.com/v1/gifs/trending?api_key=M3rDkcVPTRTZFQNBzhIhOnkjQPpZICQs").then(e=>e.json()).then(e=>console.log(e))
+}
+
+
   render(){
     return (
       <div className="main-header">
