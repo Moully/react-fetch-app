@@ -14,26 +14,23 @@ class App extends React.Component {
 
 
 
-componentDidMount(){
-  axios.get("http://api.giphy.com/v1/gifs/trending?api_key=M3rDkcVPTRTZFQNBzhIhOnkjQPpZICQs")
-  .then(res => 
-    
-    
-    {
-      this.setState({
-        gifs: res.data.data
-      })
-      console.log(res);
-    })
-  .catch(error=>console.log("error fetching and parsing data", error))
-
-
+componentDidMount(){}
   // fetch("http://api.giphy.com/v1/gifs/trending?api_key=M3rDkcVPTRTZFQNBzhIhOnkjQPpZICQs")
   // .then(e=>e.json())
   // .then((data)=>{
   // this.setState({gifs: data.data})})
   // .catch(error=>{console.log("Error featching and parsing data", error);})
-}
+  performSearch = (query) =>{
+    axios.get(`http://api.giphy.com/v1/gifs/search?q=${query}&api_key=M3rDkcVPTRTZFQNBzhIhOnkjQPpZICQs`)
+    .then(res => 
+      {
+        this.setState({
+          gifs: res.data.data
+        })
+      })
+    .catch(error=>console.log("error fetching and parsing data", error))
+  }
+
 
 
   render(){
@@ -42,7 +39,7 @@ componentDidMount(){
         <div className='main-inner'>
           <h1 className='main-title'>Search App</h1>
         </div>
-        <Search  />
+        <Search onSearch={this.performSearch} />
         <div className="main-content">
           <GifList data={this.state.gifs}/>
         </div>
