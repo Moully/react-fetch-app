@@ -7,7 +7,10 @@ class Search extends React.Component {
             <div>
                 <form className="search-form">
                     <label className="is-hidden" htmlFor="search">Search</label>
-                    <input placeholder="Search..."></input>
+                    <input type="search" name="search" placeholder="Search..."></input>
+                    <button type="sumbit" id="submit" className="search-button">
+                        <i className="material-icons icn-search"></i>
+                    </button>
                 </form>
             </div>
         )
