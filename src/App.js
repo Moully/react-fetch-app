@@ -13,7 +13,12 @@ class App extends React.Component {
   }
 
 componentDidMount(){
-  fetch("http://api.giphy.com/v1/gifs/trending?api_key=M3rDkcVPTRTZFQNBzhIhOnkjQPpZICQs").then(e=>e.json()).then(e=>console.log(e))
+  fetch("http://api.giphy.com/v1/gifs/trending?api_key=M3rDkcVPTRTZFQNBzhIhOnkjQPpZICQs")
+  .then(e=>e.json())
+  .then((data)=>{
+  this.setState({gifs: data.data})})
+  .catch(error=>{console.log("Error featching and parsing data", error);})
+  
 }
 
 
@@ -25,7 +30,7 @@ componentDidMount(){
         </div>
         <Search  />
         <div className="main-content">
-          <GifList />
+          <GifList data={this.state.gifs}/>
         </div>
 
 
